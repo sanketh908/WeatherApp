@@ -9,10 +9,10 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class WetherService {
     RestTemplate restTemplate = new RestTemplate();
-    @Value("${openmeteo.weather.APIkey}")
+    @Value("${weatherstack.api.key}")
     private String APIKEY;
 
-    @Value("${openmeteo.weather.url}")
+    @Value("${weatherstack.api.url}")
     private String url;
 
     public WeatherResponse getWeather(String city){
