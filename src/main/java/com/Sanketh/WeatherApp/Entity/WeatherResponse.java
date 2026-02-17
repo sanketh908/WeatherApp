@@ -1,3 +1,5 @@
+package com.Sanketh.WeatherApp.Entity;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WeatherResponse {

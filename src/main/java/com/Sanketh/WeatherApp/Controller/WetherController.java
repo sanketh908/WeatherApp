@@ -9,8 +9,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/wether")
 public class WetherController {
- private WetherService wetherService;
+ private  WetherService wetherService;
+ @GetMapping("/todayweather/{city}")
+ public ResponseEntity<WeatherResponse> getTodayWeather(@PathVariable String city ){
+  WeatherResponse weatherResponse = wetherService.getWeather(city);
+  return new ResponseEntity<>(weatherResponse, HttpStatus.OK);
 
+
+
+ }
 
 
 

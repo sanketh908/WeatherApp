@@ -8,19 +8,17 @@ import org.springframework.web.client.RestTemplate;
 
 public class WetherService {
     RestTemplate restTemplate = new RestTemplate();
-    @Value("${openmeteo.geocode.url}")
-    private String geocodeUrl;
+    @Value("${openmeteo.weather.APIkey}")
+    private String APIKEY;
 
     @Value("${openmeteo.weather.url}")
-    private String weatherUrl;
+    private String url;
 
-    public WeatherResponse getCity(String city){
-        String Replace = geocodeUrl.replace("{city}", city);
+    public WeatherResponse getWeather(String city){
+        String Replace =url.replace("<city>", city).replace("<apikey>",APIKEY);
         ResponseEntity<WeatherResponse> response= restTemplate.exchange(Replace, HttpMethod.GET,null, WeatherResponse.class);
         WeatherResponse weatherResponse = response.getBody();
         return weatherResponse ;
     }
-    public ResponseEntity<WeatherResponse> getWeather(String city){
-        String Replace = weatherUrl.replace("{city}", city);
-    }
+
 }
