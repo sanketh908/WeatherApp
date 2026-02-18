@@ -1,98 +1,43 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Weather App</title>
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Weather App</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #74ebd5, #ACB6E5);
-            text-align: center;
-            padding: 40px;
-        }
 
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            width: 400px;
-            margin: auto;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-        }
+    </head>
+    <body>
 
-        input {
-            padding: 8px;
-            width: 70%;
-            margin-bottom: 10px;
-        }
+    <div class="container">
 
-        button {
-            padding: 8px 15px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
+        <h1> Weather Application</h1>
 
-        .weather-box {
-            margin-top: 20px;
-            text-align: left;
-        }
+        <!-- FORM -->
+        <form th:action="@{/getwether}" method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <br>
+            <button type="submit">Get Weather</button>
+        </form>
 
-        h2 {
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
+        <!-- WEATHER RESULT -->
+        <div th:if="${weather != null}" class="weather-box">
 
-<div class="container">
+            <h2 th:text="'Weather in ' + ${city}"></h2>
 
-    <h1> Weather Application</h1>
+            <strong th:text="${weather.current.tempC} + ' °C'"></strong>
 
-    <!-- FORM -->
-    <form th:action="@{/getwether}" method="POST">
-        <input type="text" name="city" placeholder="Enter city name" required>
-        <br>
-        <button type="submit">Get Weather</button>
-    </form>
-
-    <!-- WEATHER RESULT -->
-    <div th:if="${weather != null}" class="weather-box">
-
-        <h2 th:text="'Weather in ' + ${city}"></h2>
-
-        <p> Temperature:
-            <strong th:text="${weather.current.temperature} + ' °C'"></strong>
-        </p>
-
-        <p> Humidity:
             <strong th:text="${weather.current.humidity} + ' %'"></strong>
-        </p>
 
-        <p> Wind Speed:
-            <strong th:text="${weather.current.windSpeed} + ' km/h'"></strong>
-        </p>
+            <strong th:text="${weather.current.windKph} + ' km/h'"></strong>
 
-        <p> Wind Direction:
-            <strong th:text="${weather.current.windDirection}"></strong>
-        </p>
+            <strong th:text="${weather.current.windDir}"></strong>
 
-        <p> Sunrise:
-            <strong th:text="${weather.current.astro.sunrise}"></strong>
-        </p>
-
-        <p>Sunset:
-            <strong th:text="${weather.current.astro.sunset}"></strong>
-        </p>
-
-        <p> Air Quality Index (US EPA):
             <strong th:text="${weather.current.airQuality.usEpaIndex}"></strong>
-        </p>
+
+
+
+        </div>
 
     </div>
 
-</div>
-
-</body>
-</html>
+    </body>
+    </html>

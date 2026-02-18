@@ -18,6 +18,7 @@ public class WetherService {
     public WeatherResponse getWeather(String city){
         String Replace =url.replace("<city>", city).replace("<apikey>",APIKEY);
         ResponseEntity<WeatherResponse> response= restTemplate.exchange(Replace, HttpMethod.GET,null, WeatherResponse.class);
+        System.out.println(response);
         WeatherResponse weatherResponse = response.getBody();
         return weatherResponse ;
     }

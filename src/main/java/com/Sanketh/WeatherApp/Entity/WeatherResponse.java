@@ -2,18 +2,12 @@ package com.Sanketh.WeatherApp.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
 public class WeatherResponse {
 
     private Current current;
-    private Forecast forecast;
 
     public Current getCurrent() { return current; }
     public void setCurrent(Current current) { this.current = current; }
-
-    public Forecast getForecast() { return forecast; }
-    public void setForecast(Forecast forecast) { this.forecast = forecast; }
 
     public static class Current {
 
@@ -31,30 +25,28 @@ public class WeatherResponse {
         @JsonProperty("air_quality")
         private AirQuality airQuality;
 
-        // getters and setters
-    }
+        public double getTempC() { return tempC; }
+        public void setTempC(double tempC) { this.tempC = tempC; }
 
-    public static class Forecast {
-        private List<ForecastDay> forecastday;
+        public int getHumidity() { return humidity; }
+        public void setHumidity(int humidity) { this.humidity = humidity; }
 
-        // getters and setters
-    }
+        public double getWindKph() { return windKph; }
+        public void setWindKph(double windKph) { this.windKph = windKph; }
 
-    public static class ForecastDay {
-        private Astro astro;
+        public String getWindDir() { return windDir; }
+        public void setWindDir(String windDir) { this.windDir = windDir; }
 
-        // getters and setters
-    }
-
-    public static class Astro {
-        private String sunrise;
-        private String sunset;
-        // getters and setters
+        public AirQuality getAirQuality() { return airQuality; }
+        public void setAirQuality(AirQuality airQuality) { this.airQuality = airQuality; }
     }
 
     public static class AirQuality {
+
         @JsonProperty("us-epa-index")
         private int usEpaIndex;
-        // getters and setters
+
+        public int getUsEpaIndex() { return usEpaIndex; }
+        public void setUsEpaIndex(int usEpaIndex) { this.usEpaIndex = usEpaIndex; }
     }
 }
