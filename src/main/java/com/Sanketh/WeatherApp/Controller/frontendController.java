@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class frontendController {
@@ -24,12 +25,17 @@ public class frontendController {
     }
     @PostMapping("/getwether")
     public  String getWether(@RequestParam String city,Model model) {
-       WeatherResponse weatherResponse=  wetherService.getWeather(city);
+
         WeatherResponse response = wetherService.getWeather(city);
         model.addAttribute("weather", response);
         model.addAttribute("city", city);
         return "index";
 
+    }
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        return "Working!";
     }
 
 }
