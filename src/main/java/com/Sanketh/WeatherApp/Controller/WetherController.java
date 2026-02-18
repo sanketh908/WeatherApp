@@ -13,7 +13,7 @@ public class WetherController {
  public WetherController(WetherService wetherService) {
   this.wetherService = wetherService;
  }
- @GetMapping("/todayweather/{city}")
+ @PostMapping("/todayweather/{city}")
  public ResponseEntity<WeatherResponse> getTodayWeather(@PathVariable String city ){
   WeatherResponse weatherResponse = wetherService.getWeather(city);
   return new ResponseEntity<>(weatherResponse, HttpStatus.OK);
